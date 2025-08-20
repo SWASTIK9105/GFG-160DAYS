@@ -7,29 +7,19 @@
 // Output: 'e'
 // Explanation: In the given string, 'e' is the only character in the string which does not repeat.
 
-
+import java.util.*;
 class Solution {
     public char nonRepeatingChar(String S) {
-     
-        int[] freq = new int[26]; 
-        int[] index = new int[26]; 
-        for (int i = 0; i < 26; i++) {
-            index[i] = -1;
+        // code here
+         HashMap<Character,Integer> mm = new HashMap<>();
+        for(int i=0;i<S.length();i++){
+            char c = S.charAt(i);
+            mm.putIfAbsent(c,0);
+            mm.put(c,mm.get(c)+1);
         }
-        for (int i = 0; i < S.length(); i++) {
-            char ch = S.charAt(i);
-            int idx = ch - 'a';
-            freq[idx]++;
-            if (index[idx] == -1) {
-                index[idx] = i; 
-            }
+        for(int i=0;i<S.length();i++){
+            if(mm.get(S.charAt(i))==1)return S.charAt(i);
         }
-        int minIndex = Integer.MAX_VALUE;
-        for (int i = 0; i < 26; i++) {
-            if (freq[i] == 1 && index[i] < minIndex) {
-                minIndex = index[i];
-            }
-        }
-        return minIndex == Integer.MAX_VALUE ? '$' : S.charAt(minIndex);
+        return '$';
     }
 }
