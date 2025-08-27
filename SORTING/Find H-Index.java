@@ -8,3 +8,25 @@
 // Output: 2
 // Explanation: There are 3 papers (with citation counts of 5, 2, and 4) that have 2 or more citations. However, the H-Index cannot be 3 because there aren't 3 papers with 3 or more citations.
 
+import java.util.*;
+class Solution {
+  public  void reverse(int[] a) {
+        int left = 0, right = a.length - 1;
+        while (left < right) {
+            int temp = a[left];
+            a[left] = a[right];
+            a[right] = temp;
+            left++;
+            right--;
+        }
+    }
+    public int hIndex(int[] a) {
+     Arrays.sort(a);
+      reverse(a);
+        int h = 0;
+        while (h < a.length && a[h] > h) {
+            h++;
+        }
+        return h;
+    }
+}
