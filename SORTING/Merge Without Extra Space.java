@@ -7,3 +7,18 @@
 // Output: a[] = [1, 2, 3, 5, 8, 9], b[] = [10, 13, 15, 20]
 // Explanation: After merging two sorted arrays we get [1, 2, 3, 5, 8, 9, 10, 13, 15, 20].
 
+import java.util.*;
+class Solution {
+    public static void swas(int[] a,int i,int[] b,int j){
+        a[i]=(a[i]+b[j])-(b[j]=a[i]);
+    }
+    public void mergeArrays(int a[], int b[]) {
+      int i=a.length-1,j=0;
+      while(i>=0 && j<b.length){
+          if(a[i]<=b[j])break;
+          swas(a,i--,b,j++);
+      }
+      Arrays.sort(a);
+      Arrays.sort(b);
+    }
+}
