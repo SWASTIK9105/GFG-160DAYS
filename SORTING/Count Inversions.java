@@ -10,58 +10,40 @@
 
 
 
-    public static int countInversions(int[] arr) {
-        int[] temp = new int[arr.length];
-        return mergeSort(arr, temp, 0, arr.length - 1);
+   class Solution {
+    static int inversionCount(int a[]) {
+        
+        int[] b=new int[a.length];
+        return _mergeSort(a,b,0,a.length-1);
     }
-
-    private static int mergeSort(int[] arr, int[] temp, int left, int right) {
-        int invCount = 0;
-        if (left < right) {
-            int mid = (left + right) / 2;
-
-            invCount += mergeSort(arr, temp, left, mid);
-            invCount += mergeSort(arr, temp, mid + 1, right);
-            invCount += merge(arr, temp, left, mid, right);
+    static int _mergeSort(int[] a,int[] b,int x,int y){
+        int mid,inv_Count=0;
+        if(y>x){
+            mid=(y+x)/2;
+        inv_Count=_mergeSort(a,b,x,mid);
+        inv_Count+=_mergeSort(a,b,mid+1,y);
+        inv_Count+=merge(a,b,x,mid+1,y);
         }
-        return invCount;
+        return inv_Count;
     }
-
-    private static int merge(int[] arr, int[] temp, int left, int mid, int right) {
-        int i = left;     // Left subarray index
-        int j = mid + 1;  // Right subarray index
-        int k = left;     // Merged array index
-        int invCount = 0;
-
-        while (i <= mid && j <= right) {
-            if (arr[i] <= arr[j]) {
-                temp[k++] = arr[i++];
-            } else {
-                temp[k++] = arr[j++];
-                invCount += (mid - i + 1);  // Count inversions
+    static int merge(int[] a,int[] b,int x,int mid,int y){
+        int i,j,k;
+        int inv_Count=0;
+        i=x;j=mid;k=x;
+        while((i<=mid-1)&&(j<=y)){
+            if(a[i]<=a[j]){
+                b[k++]=a[i++];
+            }else{
+                b[k++]=a[j++];
+                inv_Count=inv_Count+(mid-i);
             }
         }
-
-        while (i <= mid) {
-            temp[k++] = arr[i++];
-        }
-
-        while (j <= right) {
-            temp[k++] = arr[j++];
-        }
-
-        for (i = left; i <= right; i++) {
-            arr[i] = temp[i];
-        }
-
-        return invCount;
+        while(i<=mid-1)
+            b[k++]=a[i++];
+            while(j<=y)
+            b[k++]=a[j++];
+            for(i=x;i<=y;i++)
+            a[i]=b[i];
+            return inv_Count;
     }
-
-    public static void main(String[] args) {
-        int[] arr1 = {2, 4, 1, 3, 5};
-        int[] arr2 = {2, 3, 4, 5, 6};
-
-        System.out.println(countInversions(arr1)); // Output: 3
-        System.out.println(countInversions(arr2)); // Output: 0
-    }
-
+}
