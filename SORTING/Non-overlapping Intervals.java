@@ -8,3 +8,15 @@
 // Output: 2
 // Explanation: You need to remove two [1, 3] to make the rest of the intervals non-overlapping.
 
+import java.util.*;
+ class Solution {
+static int minRemoval (int s[][]) {
+
+Arrays.sort(s, (a,b)->Integer.compare(a[1],b[1]));
+int last=0, ans=0,n=s.length;
+for(int i=1;i<n;i++){
+if (s[i][0]<s[last][1])ans++;
+else last=i;
+}
+return ans;
+}}
