@@ -11,7 +11,6 @@
 import java.util.*;
  class Solution {
 static int minRemoval (int s[][]) {
-
 Arrays.sort(s, (a,b)->Integer.compare(a[1],b[1]));
 int last=0, ans=0,n=s.length;
 for(int i=1;i<n;i++){

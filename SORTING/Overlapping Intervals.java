@@ -7,3 +7,9 @@
 // Output: [[1, 9]]
 // Explanation: In the given intervals all the intervals overlap with the interval [1, 9]. Therefore we will return [1, 9].
 
+import java.util.*;
+ class Solution {
+    public List<int[]> MergeOverlap(int a[][]){
+        
+
+    }}
