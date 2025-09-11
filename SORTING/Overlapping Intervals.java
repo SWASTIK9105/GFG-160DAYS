@@ -8,8 +8,21 @@
 // Explanation: In the given intervals all the intervals overlap with the interval [1, 9]. Therefore we will return [1, 9].
 
 import java.util.*;
- class Solution {
-    public List<int[]> MergeOverlap(int a[][]){
-        
-
+class Solution {
+    public ArrayList<int[]> mergeOverlap(int[][] x) {
+        if (x == null || x.length == 0) {
+            return new ArrayList<>();
+        }
+        Arrays.sort(x, (a, b) -> Integer.compare(a[0], b[0]));
+        ArrayList<int[]> result = new ArrayList<>();
+        result.add(x[0]);
+        for (int i = 1; i < x.length; i++) {
+            int[] last = result.get(result.size() - 1);
+            int[] current = x[i];
+            if (last[1] >= current[0]) {
+                last[1] = Math.max(last[1], current[1]);
+            } else {
+                result.add(current);
+            }}
+        return result;
     }}
