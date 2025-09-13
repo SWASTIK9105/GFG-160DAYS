@@ -17,8 +17,29 @@
 // Explanation: Since there are more students than total books, it's impossible to allocate a book to each student.
 
 class Solution {
-    public int findPages(int[] arr, int k) {
-        // code here
-        
+    boolean isPossible(int[] a, int mid, int k) {
+        int sum = 0, s = 1;
+        for (int i : a) {
+            sum += i;
+            if (sum > mid) { 
+                s++; 
+                sum = i; 
+                if (s > k) { 
+                    return false; }}}
+        return true;
     }
-}
+    public int findPages(int[] a, int k) {
+        if (k > a.length) return -1;
+        int sum = 0, mx = Integer.MIN_VALUE;
+        for (int i : a) {
+            sum += i; 
+            mx = Math.max(mx, i); }
+        int low = mx, high = sum, mid = 0, ans = Integer.MAX_VALUE;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (isPossible(a, mid, k)) { 
+                ans = Math.min(ans, mid);
+                high = mid - 1; } else {
+                low = mid + 1;  }  }
+        return ans;
+    }}

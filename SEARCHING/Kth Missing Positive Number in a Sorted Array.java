@@ -8,8 +8,14 @@
 // Explanation: Missing are 4, 5, 6… and 2nd missing number is 5.
 
 class Solution {
-    public int kthMissing(int[] arr, int k) {
-        // code here
-        
-    }
+    public int kthMissing(int[] a, int k) {
+   int c=0,i=1,j=0;
+   while(c<k){
+    if(j<a.length&&i==a[j]){
+        i++;j++;
+    }else{
+        i++;
+        c++;
+    } }        
+   return i-1; }
 }
