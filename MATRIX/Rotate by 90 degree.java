@@ -12,19 +12,20 @@
 //          [1, 3]]
 
 class Solution {
-    public void swap(int a,int b){
-        a=(a+b)-(b=a);
-    }
     public void rotateMatrix(int[][] a) {
-       int n=a[0].length;
-       for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            swap(a[i][j],a[j][i]);
-        }       }
+        int n = a.length;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n/2; j++) {
-                swap(a[i][j], a[i][n-j-1]);
-            }
-        }
-    }
-}
+            for (int j = i + 1; j < n; j++) {
+                int temp = a[i][j];
+                a[i][j] = a[j][i];
+                a[j][i] = temp;
+            }}
+        for (int j = 0; j < n; j++) {
+            int start = 0, end = n - 1;
+            while (start < end) {
+                int temp = a[start][j];
+                a[start][j] = a[end][j];
+                a[end][j] = temp;
+                start++;
+                end--;
+            }}}}
