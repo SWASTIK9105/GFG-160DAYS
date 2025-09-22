@@ -7,14 +7,15 @@
 // Output: 6
 // Explanation: Pairs with sum 2 are (1, 1), (1, 1), (1, 1), (1, 1), (1, 1), (1, 1).
 
+import java.util.HashMap;
 class Solution {
     int countPairs(int a[], int b) {
-        int i=0;
-        for(int c=0;c<a.length;c++){
-            for(int d=c+1;d<a.length;d++){
-if(a[c]+a[d]==b){
-  i++;
-}}}
-        return i;
-    }
-}
+        int count = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < a.length; i++) {
+            int complement = b - a[i];
+            if (map.containsKey(complement)) {
+                count += map.get(complement);
+            }
+            map.put(a[i], map.getOrDefault(a[i], 0) + 1);
+        }   return count; }}
