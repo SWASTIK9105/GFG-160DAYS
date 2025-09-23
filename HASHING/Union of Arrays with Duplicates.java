@@ -10,9 +10,15 @@
 // Output: [1, 2, 3, 4, 5, 6]
 // Explanation: Union set of both the arrays will be 1, 2, 3, 4, 5 and 6.
 
+import java.util.*;
 class Solution {
-    public static ArrayList<Integer> findUnion(int[] a, int[] b) {
-        // code here
-        
-    }
-}
+    public static ArrayList<Integer> findUnion(int[] a, int[] b){
+          ArrayList<Integer> ans = new ArrayList<>();;
+        HashMap<Integer,Integer> mm = new HashMap<>();
+        for(int x:a){
+            if(mm.get(x)==null)ans.add(x);
+            mm.put(x,1);}
+        for(int x:b){
+            if(mm.get(x)==null)ans.add(x);
+            mm.put(x,1);
+        } return ans;    }}
