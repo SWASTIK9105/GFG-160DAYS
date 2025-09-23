@@ -8,9 +8,18 @@
 // Output: [1]
 // Explanation: 1 is the only common element present in both the arrays.
 
+import java.util.*;
 class Solution {
     public ArrayList<Integer> intersect(int[] a, int[] b) {
-        // code here
-        
-    }
-}
+        ArrayList<Integer> result = new ArrayList<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : a) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        HashSet<Integer> added = new HashSet<>();
+      for (int num : b) {
+            if (map.containsKey(num) && map.get(num) > 0 && !added.contains(num)) {
+                result.add(num);
+                added.add(num); 
+                map.put(num, map.get(num) - 1); }        }
+        return result; }}
