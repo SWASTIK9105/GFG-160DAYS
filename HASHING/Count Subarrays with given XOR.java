@@ -8,8 +8,13 @@
 // Explanation: The subarrays having XOR of their elements as 5 are [5] and [5, 6, 7, 8, 9]. Hence, the answer is 2.
 
 class Solution {
-    public long subarrayXor(int arr[], int k) {
-        // code here
-        
-    }
-}
+      public long subarrayXor(int arr[], int k) {
+        int xor_=0,ans=0;
+        HashMap<Integer,Integer> mm = new HashMap<>();
+        for(int x:arr){
+            xor_^=x;
+            if(xor_==k)ans++;
+            ans+=mm.getOrDefault(xor_^k,0);
+            mm.put(xor_,mm.getOrDefault(xor_,0)+1);
+        }
+        return ans; }}

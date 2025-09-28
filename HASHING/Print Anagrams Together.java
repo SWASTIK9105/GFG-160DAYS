@@ -7,9 +7,21 @@
 // Output: [["is"], ["no", "on"]]
 // Explanation: There are 2 groups of anagrams "is" makes group 1. "no", "on" make group 2.
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 class Solution {
-    public ArrayList<ArrayList<String>> anagrams(String[] arr) {
-        // code here
-        
-    }
-}
+     public ArrayList<ArrayList<String>> anagrams(String[] arr) {
+        ArrayList<ArrayList<String>> ans = new ArrayList<>();
+        HashMap<String,ArrayList<String>> mm = new HashMap<>();
+        for(String x:arr)
+        {
+            char[] temp = x.toCharArray();
+            Arrays.sort(temp);
+            String str = new String(temp);
+            mm.putIfAbsent(str,new ArrayList<>());
+            mm.get(str).add(x);
+        }
+        for(ArrayList<String> x:mm.values())
+        {            ans.add(x);}
+        return ans;}}
