@@ -8,8 +8,14 @@
 // Explaination: Subarrays: arr[0...2], arr[2...4] have sum exactly equal to 33.
 
 class Solution {
-    public int cntSubarrays(int[] arr, int k) {
-        // code here
-        
-    }
-}
+  public int cntSubarrays(int[] arr, int k) {
+        int sum = 0, ans = 0;
+        HashMap<Integer, Integer> mm = new HashMap<>();
+        for (int x : arr) {
+            sum += x;
+            if (sum == k) ans++;
+            ans += mm.getOrDefault(sum - k, 0);
+            mm.put(sum, mm.getOrDefault(sum, 0) + 1);
+        }
+        return ans;
+    }}
